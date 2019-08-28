@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("api/journal")
 public class JournalRestController {
 
@@ -31,12 +31,12 @@ public class JournalRestController {
     );
 
     @GetMapping("{id}")
-    JournalEntityDTO getJournalEntity(@PathVariable String id) {
+    public JournalEntityDTO getJournalEntity(@PathVariable String id) {
         return journals.get(0);
     }
 
-    @PutMapping("get-query")
-    JournalResultDTO getQuery(@RequestBody JournalRequestDTO dto) {
+    @PutMapping("{id}/rows")
+    public JournalResultDTO getRows(@PathVariable String id, @RequestBody JournalRequestDTO dto) {
         return new JournalResultDTO(questions);
     }
 }
